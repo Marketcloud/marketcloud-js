@@ -1,0 +1,24 @@
+{
+  "name": "marketcloud-client",
+  "version": "0.0.0",
+  "authors": [
+    "Mattia Alfieri m.alfieri@marketcloud.it"
+  ],
+  "description": "Javascript bindings for Marketcloud API.",
+  "main": "marketcloud.min.js",
+  "keywords": [
+    "marketcloud",
+    "ecommerce",
+    "client"
+  ],
+  "license": "MIT",
+  "homepage": "www.marketcloud.it",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ]
+}
