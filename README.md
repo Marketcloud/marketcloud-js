@@ -1,5 +1,7 @@
 # Marketcloud Javascript Client Library
 ## Installation
 
-You can install the sdk through bower:
-`bower install marketcloud-js`
+Add the javascript sources directly into your web application:
+```javascript
+<script type="text/javascript" src="dist/marketcloud.min.js"></script>
+```
