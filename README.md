@@ -1,7 +1,15 @@
 # Marketcloud Javascript Client Library
 ## Installation
+### Bower
+```
+bower install marketcloud-js
+```
+### Manual
+```
+git clone https://github.com/Marketcloud/marketcloud-js.git
+```
 
-Add the javascript sources directly into your web application:
+Then add the javascript sources directly into your web application:
 ```javascript
 <script type="text/javascript" src="dist/marketcloud.min.js"></script>
 ```
