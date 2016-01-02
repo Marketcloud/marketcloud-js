@@ -1,0 +1,28 @@
+{
+  "name": "marketcloud-js",
+  "version": "0.0.1",
+  "description": "Marketcloud is a mobile first backend for eCommerce apps. This is the Javascript (Browser) Client",
+  "main": "dist/marketcloud.min.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Marketcloud/marketcloud-js.git"
+  },
+  "keywords": [
+    "Marketcloud",
+    "ecommerce",
+    "javascript"
+  ],
+  "author": "Herapi SRLS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Marketcloud/marketcloud-js/issues"
+  },
+  "homepage": "https://github.com/Marketcloud/marketcloud-js#readme"
+}
