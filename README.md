@@ -1,4 +1,5 @@
 # Marketcloud Javascript Client Library
+![Marketcloud](http://www.marketcloud.it/img/logo_1200.png)
 ## Installation
 ### Bower
 ```
