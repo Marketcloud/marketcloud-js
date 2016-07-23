@@ -1,6 +1,6 @@
 {
   "name": "marketcloud-js",
-  "version": "0.0.2",
+  "version": "1.1.1",
   "description": "Marketcloud is a mobile first backend for eCommerce apps. This is the Javascript (Browser) Client",
   "main": "dist/marketcloud.min.js",
   "directories": {
