@@ -1,6 +1,6 @@
 var expect = chai.expect;
 var marketcloud = new Marketcloud.Client({
-  public_key: 'f84af487-a315-42e6-a57a-d79296bd9d99'
+  publicKey: 'f84af487-a315-42e6-a57a-d79296bd9d99'
 })
 
 //We just want to be sure that the SDK is forging requests correctly
@@ -10,12 +10,12 @@ marketcloud.rejectApiErrors = false;
 function getDefaultHeaders() {
   if (marketcloud.token)
     return {
-      Authorization: marketcloud.public_key + ':' + marketcloud.token
+      Authorization: marketcloud.publicKey + ':' + marketcloud.token
     }
   else
 
     return {
-    Authorization: marketcloud.public_key
+    Authorization: marketcloud.publicKey
   }
 }
 
@@ -64,7 +64,7 @@ describe("Cart", function() {
               password: 'super-secret-password-123'
             },
             headers: {
-              Authorization: marketcloud.public_key
+              Authorization: marketcloud.publicKey
             }
           });
           expect(marketcloud.token).to.be.ok;
