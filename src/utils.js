@@ -93,7 +93,7 @@ mod.variantIsAvailable = function(options,product) {
 mod.base64EncodeFileInput = function(selector,callback) {
 
 	// The input
-	var input = querySelector(selector);
+	var input = document.querySelector(selector);
 
 	// The file to convert
 	var file = input.files[0];

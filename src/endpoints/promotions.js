@@ -11,4 +11,9 @@ function Promotions(client){
 
 Promotions.prototype = new Resource();
 
+
+Promotions.prototype.getByCart = function(cart_id,callback) {
+	return this.master.Get('/promotions/cart/'+cart_id,callback);
+}
+
 export default Promotions;

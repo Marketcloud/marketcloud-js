@@ -7,8 +7,8 @@ import Resource from '../resource'
 		this.endpoint = '/'+this.name;
 
 		this.braintree = {
-			createClientToken : function() {
-				return master.Post('/integrations/braintree/clientToken');
+			createClientToken : function(callback) {
+				return master.Post('/integrations/braintree/clientToken',callback);
 			},
 			create : function(data) {
 				data.method = 'Braintree';
@@ -16,6 +16,8 @@ import Resource from '../resource'
 					throw new Error('Missing required attribute nonce');
 				if (!data.hasOwnProperty('order_id'))
 					throw new Error('Missing required attribute order_id');
+
+				return this.master.Post('/payments', data,callback);
 			}
 		};
 		this.stripe = {
@@ -25,6 +27,8 @@ import Resource from '../resource'
 					throw new Error('Missing required attribute source');
 				if (!data.hasOwnProperty('order_id'))
 					throw new Error('Missing required attribute order_id');
+
+				return this.master.Post('/payments', data,callback);
 			}
 		};
 	}
