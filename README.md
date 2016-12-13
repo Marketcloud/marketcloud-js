@@ -1,5 +1,8 @@
 # Marketcloud Javascript Client Library
-![Marketcloud](http://www.marketcloud.it/img/logo_1200.png)
+![Marketcloud](http://beta.marketcloud.it/img/logo/new_with_text.png)
+
+This is the documentation for the V2.0.0 and above of the client,for older version, please refer to the website www.marketcloud.it
+
 ## Installation
 ### Bower
 ```
@@ -16,7 +19,10 @@ Then add the javascript sources directly into your web application:
 ```
 At this point the marketcloud sdk is available as the marketcloud variable:
 ```javascript
-marketcloud.public = 'replace-with-your-public-key';
+var marketcloud = new Marketcloud.Client({
+  publicKey : 'replace-with-your-public-key'
+})
+
 marketcloud.products.list({},function(err,products) {
 //your code here
 });
