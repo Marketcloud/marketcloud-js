@@ -15,6 +15,22 @@ mod.canIUsePromises = function() {
 }
 
 
+
+mod.uniqueValues = function(array){
+
+	var unique = {};
+	var distinct = [];
+	for( var i in array ){
+	 if( typeof(unique[array[i]]) == "undefined"){
+	  distinct.push(array[i]);
+	 }
+	 unique[array[i]] = 0;
+	}
+
+	return distinct;
+
+}
+
 /*
 
 */
@@ -24,12 +40,13 @@ mod.getVariantValues = function(variant_name,product) {
 		return [];
 	}
 
-	if (!product.variantsDefinition.hasOwnProperty(variant_name))
-		return [];
-
-	return product.variants.map((v) => {
+	var variant_values = product.variants.map((v) => {
 		return v[variant_name];
-	})
+	});
+
+	return mod.uniqueValues(variant_values);
+
+
 }
 
 mod.variantExists = function(options,product) {
