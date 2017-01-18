@@ -48,6 +48,12 @@ var BrowserStorage = (function() {
     };
 
     return {
+
+        /**
+        *   This is used to prefix keys
+        **/
+        prefix: 'mrtkcld_',
+
         /**
          * @param {String} name The name of the property to set
          * @param {String} value The value to use when setting the specified property
@@ -55,8 +61,8 @@ var BrowserStorage = (function() {
          */
         set: function(name, value, days) {
             _hasLocalStorageSupport
-                ? localStorage.setItem(name, value)
-                : _writeCookie(name, value, days);
+                ? localStorage.setItem(this.prefix+name, value)
+                : _writeCookie(this.prefix+name, value, days);
         },
 
         /**
@@ -65,8 +71,8 @@ var BrowserStorage = (function() {
          */
         get: function(name) {
             return _hasLocalStorageSupport
-                ? localStorage.getItem(name) 
-                : _readCookie(name);
+                ? localStorage.getItem(this.prefix+name) 
+                : _readCookie(this.prefix+name);
         },
 
         /**
@@ -74,8 +80,8 @@ var BrowserStorage = (function() {
          */
         delete: function(name) {
             _hasLocalStorageSupport
-                ? localStorage.removeItem(name)
-                : this.set(name, "", -1);
+                ? localStorage.removeItem(this.prefix+name)
+                : this.set(this.prefix+name, "", -1);
         }
     };
 })();
