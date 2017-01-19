@@ -1,7 +1,8 @@
 'use strict';
 
-import utils from './utils'
+import Utils from './utils'
 import request from './request'
+import Storage from './storage';
 
 //Resources
 import Brands from './endpoints/brands';
@@ -71,17 +72,36 @@ function Client(config) {
 		this.variables = new Variables(this);
 
 
+		
+		
 
 
 		this.RETRIES = 0;
 		this.MAX_RETRIES = 2;
 
 		// This is a handy reference for better testability
-		// of the whole client.
+		// and observability of the whole client.
 		this.LAST_REQUEST = null;
 
-	}
+		
 
+		// Trying to resume a previously created session
+		// from this device.
+		//
+		// By default this uses localStorage and it gets prefixed
+		// with Marketcloud.Storage.prefix
+		//
+		// We suggest to change the prefix to some strong unique to your app
+		// such as 'myStore_'. This way all keys will be namespaced with myStore_ .
+		if (Storage.get('AuthenticatedUserToken')) {
+			
+			this.token = Storage.get('AuthenticatedUserToken');
+			this.currentUser = JSON.parse(Storage.get('AuthenticatedUserData') );
+
+		}
+
+
+	}
 
 /**
 *	@return {String} The Authorization header
@@ -104,6 +124,8 @@ Client.prototype.request = function(config,callback){
 	var r = new request(config,this);
 	return r.send(callback);
 }
+
+
 
 
 /*

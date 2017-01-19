@@ -1,5 +1,5 @@
-import Resource from '../resource'
-
+import Resource from '../resource';
+import Storage from '../storage';
 
 function Users(client){
 
@@ -28,6 +28,11 @@ Users.prototype.authenticate = function(email, password,callback) {
 			
 			that.master.token = response.data.token;
 			that.master.currentUser = response.data.user;
+
+			// Persisting the user token in the browser's storage (with fallback)
+			Storage.set('AuthenticatedUserToken',response.data.token);
+			Storage.set('AuthenticatedUserData',JSON.stringify(that.master.currentUser));
+
 			if (callback)
 				return callback(null,response);
 
@@ -44,6 +49,19 @@ Users.prototype.authenticateWithFacebook = function(user_id,access_token,callbac
 		}
 		return this.master.Post('/users/authenticate/facebook', payload,callback);
 };
+
+
+/*
+*	Forgets authentication data
+*/
+Users.prototype.logout = function() {
+
+	this.master.token = null;
+	this.master.currentUser = null;
+
+	Storage.delete('AuthenticatedUserToken');
+	Storage.delete('AuthenticatedUserData');
+}
 
 
 

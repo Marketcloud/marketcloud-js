@@ -2,8 +2,16 @@
 
 var mod = {};
 
-mod.isFunction = function(object) {
- return 'function' === typeof object;
+
+/**
+*
+*	@param functionToCheck {Mixed} The test object
+*	
+*	@return {Boolean} Returns true if the parameter is a function
+**/
+mod.isFunction = function(functionToCheck) {
+ 	var getType = {};
+	return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 }
 
 /*

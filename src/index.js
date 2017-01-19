@@ -5,7 +5,6 @@ import Storage from './storage';
 var Marketcloud = Marketcloud || {};
 
 
-
 //The client class
 Marketcloud.Client = Client;
 
