@@ -42,6 +42,20 @@ Users.prototype.authenticate = function(email, password,callback) {
 		})
 }
 
+/*
+*	@return {Boolean} True if the client has a stored auth token. False otherwise.
+*/
+Users.prototype.isAuthenticated = function() {
+
+	// May be improved by
+	// return !!this.master.token
+	if (this.master.token)
+		return true;
+	else
+		return false;
+}
+
+
 Users.prototype.authenticateWithFacebook = function(user_id,access_token,callback){
 	var payload = {
 			user_id: user_id,
@@ -52,7 +66,7 @@ Users.prototype.authenticateWithFacebook = function(user_id,access_token,callbac
 
 
 /*
-*	Forgets authentication data
+*	Forgets authentication data, both token and user data.
 */
 Users.prototype.logout = function() {
 
