@@ -8,6 +8,10 @@ This is the documentation for the V2.0.0 and above of the client,for older versi
 ```
 bower install marketcloud-js
 ```
+### NPM
+```
+npm install marketcloud-js
+```
 ### Manual
 ```
 git clone https://github.com/Marketcloud/marketcloud-js.git
