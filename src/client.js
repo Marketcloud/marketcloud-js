@@ -5,6 +5,7 @@ import request from './request'
 import Storage from './storage';
 
 //Resources
+import Addresses from './endpoints/addresses';
 import Brands from './endpoints/brands';
 import Carts from './endpoints/carts';
 import Categories from './endpoints/categories';
@@ -52,6 +53,7 @@ function Client(config) {
 		this.rejectApiErrors = config.rejectApiErrors || true;
 
 		// Creating resources instances
+		this.addresses = new Addresses(this);
 		this.brands = new Brands(this);
 		this.categories = new Categories(this);
 		this.carts = new Carts(this);
