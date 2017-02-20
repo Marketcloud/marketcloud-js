@@ -42,6 +42,20 @@ Users.prototype.authenticate = function(email, password,callback) {
 		})
 }
 
+
+
+/*
+*	@return {Object} Returns an object containing the currently authenticated user's data. If there's no auth data available,returns null.
+*/
+Users.prototype.getCurrent = function(){
+	if (this.master.currentUser)
+		return this.master.currentUser;
+	else if (Storage.get("AuthenticatedUserData"))
+		return Storage.get("AuthenticatedUserData");
+	else
+		return null;
+}
+
 /*
 *	@return {Boolean} True if the client has a stored auth token. False otherwise.
 */

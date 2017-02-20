@@ -1,5 +1,5 @@
 # Marketcloud Javascript Client Library
-![Marketcloud](http://beta.marketcloud.it/img/logo/new_with_text.png)
+![Marketcloud](http://www.marketcloud.it/img/logo/new_with_text.png)
 
 This is the documentation for the V2.0.0 and above of the client,for older version, please refer to the website www.marketcloud.it
 
