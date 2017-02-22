@@ -13,7 +13,7 @@ before_script:
 - npm install -g mocha-phantomjs
 - npm install -g http-server
 - sleep 3
-- http-server . -p 9000 &
+- http-server . -p 9000 > /dev/null &
 - sleep 3
 script: mocha-phantomjs -p phantomjs-2.1.1-linux-x86_64/bin/phantomjs http://localhost:9000/tests/runner.html
 notifications:
