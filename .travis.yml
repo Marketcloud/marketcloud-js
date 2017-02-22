@@ -9,7 +9,7 @@ before_script:
 - npm install -g mocha-phantomjs
 - npm install -g http-server
 - sleep 3
-- http-server . -p 9000
+- http-server . -p 9000 &
 - sleep 3
 script: mocha-phantomjs -p phantomjs http://localhost:9000/tests/runner.html
 notifications:
