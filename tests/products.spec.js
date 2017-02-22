@@ -1,7 +1,5 @@
 var expect = chai.expect;
-var marketcloud = new Marketcloud.Client({
-  publicKey : 'f84af487-a315-42e6-a57a-d79296bd9d99'
-})
+var marketcloud = getMarketcloudClient();
 
 //We just want to be sure that the SDK is forging requests correctly
 // so we are not going to test the db
@@ -57,9 +55,7 @@ describe("Product", function() {
           method : 'GET',
           url : 'https://api.marketcloud.it/v0/products/12',
           params : {},
-          headers : {
-            Authorization : marketcloud.publicKey
-          }
+          headers : marketcloud.LAST_REQUEST.headers
         });
       })
     });

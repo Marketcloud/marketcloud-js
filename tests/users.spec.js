@@ -1,20 +1,24 @@
 var expect = chai.expect;
-var marketcloud = new Marketcloud.Client({
-  publicKey : 'f84af487-a315-42e6-a57a-d79296bd9d99'
-})
+chai.config.truncateThreshold = 0;
+
+
 
 //We just want to be sure that the SDK is forging requests correctly
 // so we are not going to test the db
-marketcloud.rejectApiErrors = false;
+
 
 function getDefaultHeaders(){
-  return {
-            Authorization : marketcloud.publicKey
-          }
+  return marketcloud.LAST_REQUEST.headers;
+}
+
+function getLastHeaders(){
+  return marketcloud.LAST_REQUEST.headers;
 }
 
 describe("Users", function() {
+
   // Fixtures
+  var marketcloud = getMarketcloudClient();
   var product = null;
   var randomemail = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
   randomemail+='@test.com';
@@ -39,17 +43,19 @@ describe("Users", function() {
             email  : randomemail,
             password : 'super-secret-password-123'
           },
-          headers : getDefaultHeaders()
+          headers : marketcloud.LAST_REQUEST.headers
           
         });
       })
     });
 
+    it("should authenticate a user", function() {
+      // Lets forget the auth
+      marketcloud.users.logout();
 
-     it("should authenticate a user", function() {
-      
       return marketcloud.users.authenticate(randomemail,'super-secret-password-123')
       .then(function(response) {
+
         expect(marketcloud.LAST_REQUEST).to.deep.equal({
           method : 'POST',
           url : 'https://api.marketcloud.it/v0/users/authenticate',
@@ -57,10 +63,10 @@ describe("Users", function() {
             email : randomemail,
             password : 'super-secret-password-123'
           },
-          headers : {
-            Authorization : marketcloud.publicKey
-          }
+          headers : marketcloud.LAST_REQUEST.headers
         });
+        expect(marketcloud.token).to.equal(response.data.token);
+        expect(marketcloud.users.isAuthenticated()).to.equal(true);
       })
     });
 
