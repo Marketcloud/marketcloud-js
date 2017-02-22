@@ -1,17 +1,21 @@
 language: node_js
 sudo: false
+cache:
+  directories:
+  - node_modules
+  - public/components
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - npm install
-- npm install -g bower
-- bower install
+- wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-i686.tar.bz2
+- tar xjvf phantomjs-2.1.1-linux-i686.tar.bz2
 - npm install -g mocha-phantomjs
 - npm install -g http-server
 - sleep 3
 - http-server . -p 9000 &
 - sleep 3
-script: mocha-phantomjs -p phantomjs http://localhost:9000/tests/runner.html
+script: mocha-phantomjs -p phantomjs-2.1.1-linux-i686/bin/phantomjs http://localhost:9000/tests/runner.html
 notifications:
   slack:
     secure: Qq4CJIY3ufIm1+GO0jNz+0abs6DdFZq7FafduQTlCqECbaKT9Q+64NU29+voA8j9o3+Hyd/xm/7DR61L6uNcuqwfOAQ+MRPzcfJfHr0bQYG2cONN8tWqC57TdUzVzrwQe+c1iVJTH8zwNSrtP9lqCIoR2pocIHNbCnJIWGjgUuiZsRrFNT/fUlLRZsWqke3h48Ir25pwbRS5eTneyKpzDCfEzvtnHSBchJdDZNhK+XpnCZMNg6FaRcU0vroPusJ7ky0hgaYNlI6USLcxmmg1E5+10WknNnQuP9+iVjXfYoDYo2oaueM5NrI93z6j2JGGc8yRYiMZqjrKnBH66294Ui9DrjfQeyS7vYKP4Wyyd4+UKYIw9AQ/Rp3cGUnd2mjsxIBhrWYyFir9BpAGBrr6yJShKod2OJZEAWNSPFfK+PQ3jUQuJy96rGpbTSjegeicMRXXSsZhLcupozh2oNouz7CVxCuo9UPApjq/6v+E+0t82yySFZKnXV6eWO+fq8zvyQh4KOlu+Pu5h6ixkekPlBA8Y2Lr4izr+FIg0n60Z8qrwj7GaDQ3T2FovbdeIe0JD33jy2NLABpXHQ1gbCGbiCa6yJcGCevPUCKSvaw+X7ZWSGmmp8rPKSA4ADrwAfgzDGufflZ3gWDAoNVZ9/4tOVZNoAE2+559if3w8K2slkE=
