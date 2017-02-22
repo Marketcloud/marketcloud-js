@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Notifications (client) {
+  Resource.call(this, client)
 
-function Notifications(client){
-
-	Resource.call(this,client);
-
-	this.name = 'notifications';
-	this.endpoint = '/'+this.name;
+  this.name = 'notifications'
+  this.endpoint = '/' + this.name
 }
 
-Notifications.prototype = new Resource();
+Notifications.prototype = new Resource()
 
-export default Notifications;
+export default Notifications

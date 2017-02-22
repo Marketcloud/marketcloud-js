@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Addresses (client) {
+  Resource.call(this, client)
 
-function Addresses(client){
-
-	Resource.call(this,client);
-
-	this.name = 'addresses';
-	this.endpoint = '/'+this.name;
+  this.name = 'addresses'
+  this.endpoint = '/' + this.name
 }
 
-Addresses.prototype = new Resource();
+Addresses.prototype = new Resource()
 
-export default Addresses;
+export default Addresses

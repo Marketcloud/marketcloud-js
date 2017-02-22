@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Categories (client) {
+  Resource.call(this, client)
 
-function Categories(client){
-
-	Resource.call(this,client);
-
-	this.name = 'categories';
-	this.endpoint = '/'+this.name;
+  this.name = 'categories'
+  this.endpoint = '/' + this.name
 }
 
-Categories.prototype = new Resource();
+Categories.prototype = new Resource()
 
-export default Categories;
+export default Categories

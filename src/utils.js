@@ -1,138 +1,124 @@
 'use strict'
 
-var mod = {};
-
+var mod = {}
 
 /**
 *
-*	@param functionToCheck {Mixed} The test object
-*	
-*	@return {Boolean} Returns true if the parameter is a function
+* @param functionToCheck {Mixed} The test object
+*
+* @return {Boolean} Returns true if the parameter is a function
 **/
-mod.isFunction = function(functionToCheck) {
- 	var getType = {};
-	return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+mod.isFunction = function (functionToCheck) {
+  var getType = {}
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
 }
 
 /*
 
 */
-mod.canIUsePromises = function() {
-	return (typeof Promise !== "undefined" && 
-			Promise.toString().indexOf("[native code]") !== -1)
+mod.canIUsePromises = function () {
+  return (typeof Promise !== 'undefined' &&
+      Promise.toString().indexOf('[native code]') !== -1)
 }
 
+mod.uniqueValues = function (array) {
+  var unique = {}
+  var distinct = []
+  for (var i in array) {
+    if (typeof (unique[array[i]]) === 'undefined') {
+      distinct.push(array[i])
+    }
+    unique[array[i]] = 0
+  }
 
-
-mod.uniqueValues = function(array){
-
-	var unique = {};
-	var distinct = [];
-	for( var i in array ){
-	 if( typeof(unique[array[i]]) == "undefined"){
-	  distinct.push(array[i]);
-	 }
-	 unique[array[i]] = 0;
-	}
-
-	return distinct;
-
+  return distinct
 }
 
 /*
 
 */
-mod.getVariantValues = function(variant_name,product) {
+mod.getVariantValues = function (variantName, product) {
+  if (product.type !== 'product_with_variants') {
+    return []
+  }
 
-	if (product.type !== 'product_with_variants'){
-		return [];
-	}
+  var variantValues = product.variants.map((v) => {
+    return v[variantName]
+  })
 
-	var variant_values = product.variants.map((v) => {
-		return v[variant_name];
-	});
-
-	return mod.uniqueValues(variant_values);
-
-
+  return mod.uniqueValues(variantValues)
 }
 
-mod.variantExists = function(options,product) {
-	return product.variants.some((v) => {
+mod.variantExists = function (options, product) {
+  return product.variants.some((v) => {
+    var allOptionsMatch = true
 
-		var allOptionsMatch = true;
+    for (var optionName in options) {
+      if (options[optionName] !== v[optionName]) {
+        allOptionsMatch = false
+      }
+    }
 
-		for (var option_name in options) {
-			if (options[option_name] !== v[option_name])
-				allOptionsMatch = false;
-		}
-
-		return allOptionsMatch;
-	})
+    return allOptionsMatch
+  })
 }
 
 /*
-	@param {Object} options Object containing product variants
-	@param {Object} product The produ
-	@return Boolean
+  @param {Object} options Object containing product variants
+  @param {Object} product The produ
+  @return Boolean
 
-	Returns true if the variant exists and is available
+  Returns true if the variant exists and is available
 */
-mod.variantIsAvailable = function(options,product) {
+mod.variantIsAvailable = function (options, product) {
+  if (product.type !== 'product_with_variants') {
+    return false
+  }
 
+  return product.variants.some((v) => {
+    var allOptionsMatch = true
+    var isAvailable = false
 
-	if (product.type !== 'product_with_variants')
-		return false;
+    for (var optionName in options) {
+      if (options[optionName] !== v[optionName]) {
+        allOptionsMatch = false
+      }
+    }
 
-	return product.variants.some((v) => {
+    if (allOptionsMatch) {
+      // If its the variant we are looking for
+      // We must check for the invetory
 
-		var allOptionsMatch = true,
-			isAvailable = false;
+      if (v.stock_type === 'track' && v.stock_level > 0) {
+        isAvailable = true
+      }
 
-		for (var option_name in options) {
-			if (options[option_name] !== v[option_name])
-				allOptionsMatch = false;
-		}
+      if (v.stock_type === 'status' && v.stock_status === 'in_stock') {
+        isAvailable = true
+      }
 
-		if (allOptionsMatch) {
-			// If its the variant we are looking for
-			//We must check for the invetory
+      if (stock_type === 'infinite') { isAvailable = true }
+    }
 
-			if (v.stock_type === 'track' && v.stock_level > 0)
-					isAvailable = true;
-			
-			if (v.stock_type === 'status' && v.stock_status === 'in_stock')
-				isAvailable = true;
-
-			if (stock_type === 'infinite')
-				isAvailable = true;
-
-		}
-
-		return allOptionsMatch && isAvailable;
-	})
+    return allOptionsMatch && isAvailable
+  })
 }
 
+mod.base64EncodeFileInput = function (selector, callback) {
+  // The input
+  var input = document.querySelector(selector)
 
+  // The file to convert
+  var file = input.files[0]
 
-mod.base64EncodeFileInput = function(selector,callback) {
+  // The FileReader instance
+  var reader = new FileReader()
 
-	// The input
-	var input = document.querySelector(selector);
+  reader.addEventListener('load', function () {
+    callback(reader.result)
+  }, false)
 
-	// The file to convert
-	var file = input.files[0];
-
-	// The FileReader instance
-	var reader = new FileReader();
-
-	reader.addEventListener("load", function () {
-		callback(reader.result);
-	  }, false);
-
-	if (file)
-		reader.readAsDataURL(file);
+  if (file) { reader.readAsDataURL(file) }
 }
 
-
-export default mod;
+export default mod

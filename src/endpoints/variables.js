@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Variables (client) {
+  Resource.call(this, client)
 
-function Variables(client){
-
-	Resource.call(this,client);
-
-	this.name = 'variables';
-	this.endpoint = '/'+this.name;
+  this.name = 'variables'
+  this.endpoint = '/' + this.name
 }
 
-Variables.prototype = new Resource();
+Variables.prototype = new Resource()
 
-export default Variables;
+export default Variables

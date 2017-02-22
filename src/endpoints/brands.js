@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Brands (client) {
+  Resource.call(this, client)
 
-function Brands(client){
-
-	Resource.call(this,client);
-
-	this.name = 'brands';
-	this.endpoint = '/'+this.name;
+  this.name = 'brands'
+  this.endpoint = '/' + this.name
 }
 
-Brands.prototype = new Resource();
+Brands.prototype = new Resource()
 
-export default Brands;
+export default Brands

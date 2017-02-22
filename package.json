@@ -1,6 +1,6 @@
 {
   "name": "marketcloud-js",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Marketcloud is a mobile first backend for eCommerce apps. This is the Javascript (Browser) Client",
   "main": "dist/marketcloud.min.js",
   "directories": {
@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "mocha test"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,10 @@
     "babel-loader": "^6.2.8",
     "babel-preset-es2015": "^6.18.0",
     "chai": "^3.5.0",
+    "eslint": "^3.16.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
     "mocha": "^3.1.2",
     "sinon": "^1.17.6",
     "webpack": "^1.13.3"

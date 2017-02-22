@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function PaymentMethods (client) {
+  Resource.call(this, client)
 
-function PaymentMethods(client){
-
-	Resource.call(this,client);
-
-	this.name = 'paymentMethods';
-	this.endpoint = '/'+this.name;
+  this.name = 'paymentMethods'
+  this.endpoint = '/' + this.name
 }
 
-PaymentMethods.prototype = new Resource();
+PaymentMethods.prototype = new Resource()
 
-export default PaymentMethods;
+export default PaymentMethods

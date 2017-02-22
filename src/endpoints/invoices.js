@@ -1,14 +1,12 @@
 import Resource from '../resource'
 
+function Invoices (client) {
+  Resource.call(this, client)
 
-function Invoices(client){
-
-	Resource.call(this,client);
-
-	this.name = 'invoices';
-	this.endpoint = '/'+this.name;
+  this.name = 'invoices'
+  this.endpoint = '/' + this.name
 }
 
-Invoices.prototype = new Resource();
+Invoices.prototype = new Resource()
 
-export default Invoices;
+export default Invoices
