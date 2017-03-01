@@ -1,4 +1,4 @@
-# Marketcloud Javascript Client Library
+# Marketcloud Javascript Client Library [![Build Status](https://travis-ci.org/Marketcloud/marketcloud-js.svg?branch=master)](https://travis-ci.org/Marketcloud/marketcloud-js)
 ![Marketcloud](http://www.marketcloud.it/img/logo/new_with_text.png)
 
 This is the documentation for the V2.0.0 and above of the client,for older version, please refer to the website www.marketcloud.it
