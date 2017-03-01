@@ -1,4 +1,5 @@
-# Marketcloud Javascript Client Library [![Build Status](https://travis-ci.org/Marketcloud/marketcloud-js.svg?branch=master)](https://travis-ci.org/Marketcloud/marketcloud-js)
+[![Build Status](https://travis-ci.org/Marketcloud/marketcloud-js.svg?branch=master)](https://travis-ci.org/Marketcloud/marketcloud-js) [![npm version](https://badge.fury.io/js/marketcloud-js.svg)](https://badge.fury.io/js/marketcloud-js) [![Bower version](https://badge.fury.io/bo/marketcloud-js.svg)](https://badge.fury.io/bo/marketcloud-js)
+# Marketcloud Javascript Client Library 
 ![Marketcloud](http://www.marketcloud.it/img/logo/new_with_text.png)
 
 This is the documentation for the V2.0.0 and above of the client,for older version, please refer to the website www.marketcloud.it
