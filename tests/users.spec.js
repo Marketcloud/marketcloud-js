@@ -65,8 +65,27 @@ describe("Users", function() {
           },
           headers : marketcloud.LAST_REQUEST.headers
         });
+        
         expect(marketcloud.token).to.equal(response.data.token);
         expect(marketcloud.users.isAuthenticated()).to.equal(true);
+      })
+    });
+
+    it("should update a user", function() {
+     
+
+      return marketcloud.users.updateCurrent({updated:true})
+      .then(function(response) {
+
+        expect(marketcloud.LAST_REQUEST).to.deep.equal({
+          method : 'PUT',
+          url : 'https://api.marketcloud.it/v0/users/'+marketcloud.currentUser.id,
+          data : {
+            updated:true
+          },
+          headers : marketcloud.LAST_REQUEST.headers
+        });
+
       })
     });
 
