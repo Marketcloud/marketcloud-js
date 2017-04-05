@@ -1,5 +1,7 @@
 'use strict'
 
+/* globals FileReader */
+
 var mod = {}
 
 /**
@@ -97,7 +99,9 @@ mod.variantIsAvailable = function (options, product) {
         isAvailable = true
       }
 
-      if (stock_type === 'infinite') { isAvailable = true }
+      if (v.stock_type === 'infinite') {
+        isAvailable = true
+      }
     }
 
     return allOptionsMatch && isAvailable

@@ -1,8 +1,5 @@
 import Resource from '../resource'
 
-
-
-
 function Carts (client) {
   Resource.call(this, client)
 
@@ -10,16 +7,10 @@ function Carts (client) {
   this.endpoint = '/' + this.name
 }
 
-
-
 Carts.prototype = new Resource()
 
-
-
-
-
 /*
-*   Adds one or more item to the cart. 
+*   Adds one or more item to the cart.
 *
 *   @param id {Number} The cart's id
 *   @param items {Array} An array of Line items. See Line item.
@@ -40,11 +31,8 @@ Carts.prototype.add = function (id, items, callback) {
   return this.master.Patch('/carts/' + id, payload, callback)
 }
 
-
-
-
 /*
-*   Removes one or more item to the cart. 
+*   Removes one or more item to the cart.
 *
 *   @param id {Number} The cart's id
 *   @param items {Array} An array of Line items to remove
@@ -53,9 +41,13 @@ Carts.prototype.add = function (id, items, callback) {
 *   @return {Promise}
 */
 Carts.prototype.remove = function (id, items, callback) {
-  if (isNaN(id))			{ throw new Error('id must be an integer.') }
+  if (isNaN(id)) {
+    throw new Error('id must be an integer.')
+  }
 
-  if (!(items instanceof Array))			{ throw new Error('items must be an array of line items') }
+  if (!(items instanceof Array)) {
+    throw new Error('items must be an array of line items')
+  }
 
   var payload = {
     op: 'remove',
@@ -64,9 +56,8 @@ Carts.prototype.remove = function (id, items, callback) {
   return this.master.Patch('/carts/' + id, payload, callback)
 }
 
-
 /*
-*   Updates one or more item in the cart. 
+*   Updates one or more item in the cart.
 *
 *   @param id {Number} The cart's id
 *   @param items {Array} An array of Line items
@@ -75,13 +66,9 @@ Carts.prototype.remove = function (id, items, callback) {
 *   @return {Promise}
 */
 Carts.prototype.update = function (id, items, callback) {
-  if (isNaN(id))
-    throw new Error('id must be an integer.')
-  
+  if (isNaN(id)) { throw new Error('id must be an integer.') }
 
-  if (!(items instanceof Array))
-    throw new Error('items must be an array of line items')
-  
+  if (!(items instanceof Array)) { throw new Error('items must be an array of line items') }
 
   var payload = {
     op: 'update',
@@ -90,34 +77,27 @@ Carts.prototype.update = function (id, items, callback) {
   return this.master.Patch('/carts/' + id, payload, callback)
 }
 
-
-
 /*
-*   Adds a coupon to the cart. 
+*   Adds a coupon to the cart.
 *
-*   @param cart_id {Number} The cart's id
-*   @param coupon_code {String} The coupon's code
+*   @param cartId {Number} The cart's id
+*   @param couponCode {String} The coupon's code
 *   @param callback {Function} The callback function
 
 *   @return {Promise}
 */
-Carts.prototype.addCoupon = function (cart_id, coupon_code, callback) {
+Carts.prototype.addCoupon = function (cartId, couponCode, callback) {
+  if (isNaN(cartId)) { throw new Error('cartId must be an integer.') }
 
-  if (isNaN(cart_id))
-    throw new Error('cart_id must be an integer.')
-
-  if ("string" !== typeof coupon_code)
-    throw new Error('coupon_code must be a string.')
-
-  
-  var payload = {
-    coupon_code : coupon_code
-    
+  if (typeof couponCode !== 'string') {
+    throw new Error('couponCode must be a string.')
   }
-  return this.master.Put('/carts/' + cart_id+'/coupon', payload, callback)
+
+  var payload = {
+    couponCode: couponCode
+
+  }
+  return this.master.Put('/carts/' + cartId + '/coupon', payload, callback)
 }
-
-
-
 
 export default Carts

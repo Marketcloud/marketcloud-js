@@ -53,15 +53,13 @@ Users.prototype.getCurrent = function (useStorage, callback) {
 /*
 * @return {Object} Returns an object containing the currently authenticated user's data. If there's no auth data available,returns null.
 */
-Users.prototype.updateCurrent = function (update,callback) {
+Users.prototype.updateCurrent = function (update, callback) {
   // if usestorage is true, then we don't fetch data from marketcloud
   if (this.master.currentUser) {
-    return this.master.Put('/users/'+this.master.currentUser.id,update);
+    return this.master.Put('/users/' + this.master.currentUser.id, update)
   } else {
     throw new Error('Unable to update current user. No user is currently authenticated. Call authenticate() first.')
   }
-
-
 }
 
 /*

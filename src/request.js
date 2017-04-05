@@ -1,5 +1,8 @@
 'use strict'
 
+// ESLINT
+/* globals ActiveXObject, XMLHttpRequest */
+
 import utils from './utils'
 
 var XMLHttpFactories = [

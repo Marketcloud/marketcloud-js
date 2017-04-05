@@ -1,4 +1,3 @@
-import Resource from '../resource'
 
 function Payments (master) {
   this.master = master
@@ -8,9 +7,9 @@ function Payments (master) {
 
   this.braintree = {
     createClientToken: function (callback) {
-      return master.Post('/integrations/braintree/clientToken',{}, callback)
+      return master.Post('/integrations/braintree/clientToken', {}, callback)
     },
-    create: function (data) {
+    create: function (data, callback) {
       data.method = 'Braintree'
       if (!data.hasOwnProperty('nonce')) {
         throw new Error('Missing required attribute nonce')
@@ -23,7 +22,7 @@ function Payments (master) {
     }
   }
   this.stripe = {
-    create: function (data) {
+    create: function (data, callback) {
       data.method = 'Stripe'
       if (!data.hasOwnProperty('source')) { throw new Error('Missing required attribute source') }
       if (!data.hasOwnProperty('order_id')) {

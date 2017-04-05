@@ -9,8 +9,8 @@ function Promotions (client) {
 
 Promotions.prototype = new Resource()
 
-Promotions.prototype.getByCart = function (cart_id, callback) {
-  return this.master.Get('/promotions/cart/' + cart_id,{}, callback)
+Promotions.prototype.getByCart = function (cartId, callback) {
+  return this.master.Get('/promotions/cart/' + cartId, {}, callback)
 }
 
 export default Promotions
