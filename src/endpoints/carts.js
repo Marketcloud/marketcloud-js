@@ -75,19 +75,46 @@ Carts.prototype.remove = function (id, items, callback) {
 *   @return {Promise}
 */
 Carts.prototype.update = function (id, items, callback) {
-  if (isNaN(id))			{
+  if (isNaN(id))
     throw new Error('id must be an integer.')
-  }
+  
 
-  if (!(items instanceof Array))			{
+  if (!(items instanceof Array))
     throw new Error('items must be an array of line items')
-  }
+  
 
   var payload = {
     op: 'update',
     items: items
   }
   return this.master.Patch('/carts/' + id, payload, callback)
+}
+
+
+
+/*
+*   Adds a coupon to the cart. 
+*
+*   @param cart_id {Number} The cart's id
+*   @param coupon_code {String} The coupon's code
+*   @param callback {Function} The callback function
+
+*   @return {Promise}
+*/
+Carts.prototype.addCoupon = function (cart_id, coupon_code, callback) {
+
+  if (isNaN(cart_id))
+    throw new Error('cart_id must be an integer.')
+
+  if ("string" !== typeof coupon_code)
+    throw new Error('coupon_code must be a string.')
+
+  
+  var payload = {
+    coupon_code : coupon_code
+    
+  }
+  return this.master.Put('/carts/' + cart_id+'/coupon', payload, callback)
 }
 
 
