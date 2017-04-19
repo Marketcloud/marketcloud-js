@@ -94,7 +94,7 @@ Carts.prototype.addCoupon = function (cartId, couponCode, callback) {
   }
 
   var payload = {
-    couponCode: couponCode
+    coupon_code: couponCode
 
   }
   return this.master.Put('/carts/' + cartId + '/coupon', payload, callback)
