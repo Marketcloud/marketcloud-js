@@ -21,6 +21,9 @@ module.exports = {
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.DedupePlugin(),
+        new webpack.DefinePlugin({
+          VERSION: JSON.stringify(require("./package.json").version)
+        })
     ],
     output: {
         path: './dist',

@@ -1,4 +1,5 @@
 'use strict'
+/* globals VERSION */
 
 /*
   Importing core modules
@@ -132,7 +133,9 @@ Client.prototype.buildRequestObject = function (method, path, data) {
     url: that.baseUrl + '/' + that.apiVersion + path,
     method: method,
     headers: {
-      Authorization: that.getAuthorizationHeader()
+      'Authorization': that.getAuthorizationHeader(),
+      'X-sdk-variant': 'javascript',
+      'X-sdk-version': VERSION
     }
   }
   if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
