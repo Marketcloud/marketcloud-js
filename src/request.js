@@ -101,6 +101,14 @@ request.prototype.getFullRequestUri = function () {
 *
 **/
 request.prototype.send = function (callback) {
+  if (callback) {
+    return this.sendAsCallback(callback)
+  } else {
+    return this.sendAsPromise()
+  }
+}
+
+request.prototype.sendAsPromise = function () {
   return new Promise((resolve, reject) => {
     // Creating the request instance
     var xhr = createXMLHTTPObject()
@@ -117,16 +125,8 @@ request.prototype.send = function (callback) {
     xhr.onreadystatechange = () => {
       if (xhr.readyState === 4) {
         if (xhr.status >= 200 && xhr.status < 400) {
-          if (utils.isFunction(callback)) {
-            callback(null, JSON.parse(xhr.responseText))
-          }
-
           return resolve(JSON.parse(xhr.responseText))
         } else if (xhr.status >= 400) {
-          if (utils.isFunction(callback)) {
-            callback(JSON.parse(xhr.responseText))
-          }
-
           if (this.client.rejectApiErrors === true) {
             return reject(JSON.parse(xhr.responseText))
           } else {
@@ -146,6 +146,46 @@ request.prototype.send = function (callback) {
       xhr.send()
     }
   })
+}
+
+request.prototype.sendAsCallback = function (callback) {
+  if (!utils.isFunction(callback)) {
+    throw new Error('Callback must be a Function')
+  }
+
+    // Creating the request instance
+  var xhr = createXMLHTTPObject()
+    // Init the request
+  xhr.open(this.method, this.getFullRequestUri())
+
+    // Adding headers
+  xhr.setRequestHeader('Content-Type', 'application/json')
+  xhr.setRequestHeader('Accept', 'application/json')
+
+  for (var k in this.headers) { xhr.setRequestHeader(k, this.headers[k]) }
+
+    // Setting up callbacks
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      if (xhr.status >= 200 && xhr.status < 400) {
+        return callback(null, JSON.parse(xhr.responseText))
+      }
+
+      if (xhr.status >= 400) {
+        return callback(JSON.parse(xhr.responseText))
+      }
+    }
+  }
+
+  xhr.onerror = () => {
+    return callback(new Error('Netowrking error. Please check connectivity'))
+  }
+
+  if (['PATCH', 'POST', 'PUT'].indexOf(this.method) >= 0) {
+    xhr.send(JSON.stringify(this.data))
+  } else {
+    xhr.send()
+  }
 }
 
 window.request = request

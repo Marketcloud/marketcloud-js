@@ -26,10 +26,20 @@ Users.prototype.authenticate = function (email, password, callback) {
       Storage.set('AuthenticatedUserToken', response.data.token)
       Storage.set('AuthenticatedUserData', JSON.stringify(that.master.currentUser))
 
-      if (callback) { return callback(null, response) }
+      if (callback) {
+        return callback(null, response)
+      }
 
       return new Promise((resolve, reject) => {
         resolve(response)
+      })
+    })
+    .catch(function (response) {
+      if (callback) {
+        return callback(response, null)
+      }
+      return new Promise((resolve, reject) => {
+        reject(response)
       })
     })
 }
