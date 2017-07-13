@@ -7,11 +7,30 @@ var Marketcloud = Marketcloud || {}
 // The client class
 Marketcloud.Client = Client
 
-// Utility functions
-Marketcloud.Utils = Utils
-
 // Interface to browser storage methods
 Marketcloud.Storage = Storage
 
-window.Marketcloud = Marketcloud
+
+// Utility functions
+Marketcloud.Utils = Utils
+
+// Exporting to the window object for compatibility
+if ("undefined" !== typeof window)
+  window.Marketcloud = Marketcloud
+
+// Exporting to commonjs
+if ("undefined" !== typeof module)
+  module.exports = Marketcloud;
+
+
+// exporting to ES6
+
 export default Marketcloud
+
+export {
+  Client,
+  Storage,
+  Utils
+}
+
+

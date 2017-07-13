@@ -27,6 +27,8 @@ module.exports = {
     ],
     output: {
         path: './dist',
-        filename: 'marketcloud.min.js'
+        filename: 'marketcloud.min.js',
+        library : 'Marketcloud',
+        libraryTarget : 'umd'
     },
 };

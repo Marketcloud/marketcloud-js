@@ -1,3 +1,7 @@
+2.3.5 13 July 2017
+  
+  * Fixed how the library is exported to play better with ES6 imports
+
 2.2.2 22 February 2017
 
 	* Added method users.getCurrent(fromStorage,callback) : Promise
