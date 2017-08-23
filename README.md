@@ -1044,7 +1044,7 @@ marketcloud.users.getCurrent(function(err,response){
 ```
 
 //Update the information about the currently authenticated user
-marketcloud.users.update({email : 'newaddress@example.com'},function(err,response){
+marketcloud.users.updateCurrent({email : 'newaddress@example.com'},function(err,response){
 
 })      
 
